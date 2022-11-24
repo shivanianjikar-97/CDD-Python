@@ -2,7 +2,7 @@ from CDD3.iface.iWriter import iWriter
 from CDD3.impl.fileWriter import csvWriter, parquetWriter ,gcscsvWriter, gcsParquetWriter, S3csvWriter, S3ParquetWriter
 
 
-class writerFactory:
+class fileWriterFactory:
     def getFileWriter(self,config) -> iWriter:
 
         if config.get("DEFAULT", "source").lower() == "hdfs":

@@ -1,7 +1,9 @@
 from CDD3.iface.iJob import iJob
 import CDD3.factory.fileReaderFactory as readerFactory
-import CDD3.factory.fileWriterFactory as writerFactory
+import CDD3.factory.fileWriterFactory as filewriterFactory
+import CDD3.factory.tableWriterFactory as tablewriterFactory
 
+from CDD3.driver.driver import config
 class DefaultJob(iJob):
     def __init__(self,config,spark):
         self.config = config
@@ -16,4 +18,7 @@ class DefaultJob(iJob):
         df = df.selectExpr(self.config.get("DEFAULT","targetColumns"))
 
         #store into target
-        writerFactory().getFileWriter(self.config).write(df)
+        if config.get("DEFAULT","targetType").lower() == "table":
+            tablewriterFactory.gettableWriter(self.config).write(df)
+        elif config.get("DEFAULT","targetType").lower() == "file":
+            filewriterFactory().getFileWriter(self.config).write(df)
