@@ -1,7 +1,7 @@
 from CDD3.iface.iJob import iJob
 import CDD3.factory.fileReaderFactory as readerFactory
 import CDD3.factory.fileWriterFactory as filewriterFactory
-import CDD3.factory.tablewriterFactory as tablewriterFactory
+import CDD3.factory.tableWriterFactory as tablewriterFactory
 
 from CDD3.driver.driver import config
 class DefaultJob(iJob):
